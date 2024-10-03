@@ -58,7 +58,9 @@ class _QuizAppState extends State{
   int selectedAnswerIndex = -1; 
   bool questionPage=true;
   int scoreCount = 0;
-  bool correctAns = false;
+  String errorMessage ="";
+  String feedbackMessage= "";
+  Color feedbackColor=Colors.black;
 
   WidgetStateProperty<Color?> checkAnswer(int buttonIndex){
 
@@ -73,8 +75,29 @@ class _QuizAppState extends State{
     }else{
       return const WidgetStatePropertyAll(null);
     }
-
+}
+//return string to check whether answer is correct or not
+String feedbackMess(){
+  if(selectedAnswerIndex!=-1){
+      if(selectedAnswerIndex==allQuestions[currentQuestionIndex]["correctAnswer"]){
+          return feedbackMessage="Correct Answer";
+      }else{
+          return feedbackMessage="Wrong Answer";
+      }
+      //return feedbackMessage;
+  }else{
+      return feedbackMessage="";
   }
+}
+
+//return color of string to check whether answer is correct or not
+Color feedbackCol(String feedbackMessage){
+      if(feedbackMessage=="Correct Answer") {
+        return Colors.green;
+      } else {
+        return Colors.red;
+      }
+}
   @override
   Widget build(BuildContext context){
 
@@ -145,6 +168,7 @@ class _QuizAppState extends State{
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
                                 selectedAnswerIndex=0;
+                                errorMessage="";
                                 setState(() {});
                             }
                       }, 
@@ -173,6 +197,7 @@ class _QuizAppState extends State{
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
                                 selectedAnswerIndex=1;
+                                errorMessage="";
                                 setState(() {});
                             }
                       },  
@@ -201,6 +226,7 @@ class _QuizAppState extends State{
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
                                 selectedAnswerIndex=2;
+                                errorMessage="";
                                 setState(() {});
                             }
                       }, 
@@ -229,6 +255,7 @@ class _QuizAppState extends State{
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
                                 selectedAnswerIndex=3;
+                                errorMessage="";
                                 setState(() {});
                             }
                       }, 
@@ -242,12 +269,26 @@ class _QuizAppState extends State{
                       ),
                     ),
                   ),
-                  const SizedBox(height: 50,width: 20,),
-                  const Text("Correct Answer",
-                    style: TextStyle(color: Colors.green,
-                            fontSize: 20,
+                  const SizedBox(height: 50),
+                   SizedBox(
+                    child: Text(
+                        feedbackMess() ,
+                        style:  TextStyle(
+                          fontSize: 18,
+                          color: feedbackCol(feedbackMessage),
+                        ),
                     ),
                   ),
+                  const SizedBox(height: 50),
+                   SizedBox(
+                    child: Text(errorMessage,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                          ),
+                    ),
+                  )
+                  
               ],
 
             ),
@@ -256,14 +297,21 @@ class _QuizAppState extends State{
                   
                     if(selectedAnswerIndex == allQuestions[currentQuestionIndex]["correctAnswer"]){
                         scoreCount++;
-                        correctAns=true;
+                        //correctAns=true;
                     }
-                    if(currentQuestionIndex < (allQuestions.length-1)){
-                          currentQuestionIndex++;
+                    if(selectedAnswerIndex !=-1){
+                          
+                                if(currentQuestionIndex < (allQuestions.length-1)){
+                                       currentQuestionIndex++;
+                                }else{
+                                      questionPage=false;
+                                }
+                                selectedAnswerIndex=-1;
+                                feedbackMessage='';
+                                
                     }else{
-                          questionPage=false;
+                          errorMessage="Please select an option";
                     }
-                    selectedAnswerIndex=-1;
                     setState(() {});
               },
               backgroundColor: Colors.purple,
@@ -315,6 +363,31 @@ class _QuizAppState extends State{
                               fontSize: 24,
                               fontWeight: FontWeight.w500,
                           ),
+                     ),
+                     const SizedBox(height: 40,),
+                     SizedBox(
+                      height: 50,
+                      width: 160,
+                       child: ElevatedButton(
+                          onPressed:(){
+
+                              
+                                     currentQuestionIndex = 0;
+                                     selectedAnswerIndex = -1; 
+                                     questionPage=true;
+                                     scoreCount = 0;
+                                     errorMessage ="";
+                                     setState(() {});
+                            
+                          } ,
+                          child: const Text("Reset",
+                            style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.black,
+                                
+                            ),
+                          ),
+                        ),
                      ),
                      
                   ],

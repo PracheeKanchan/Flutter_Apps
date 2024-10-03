@@ -20,7 +20,6 @@ class _FlowerAppState extends State{
         "https://img.freepik.com/premium-photo/beautiful-flower-background-with-celebration_874813-17904.jpg",
         "https://cdn.pixabay.com/photo/2023/02/02/06/51/sunflower-7762051_1280.jpg",
         "https://i.pinimg.com/736x/04/5b/3a/045b3af4069fa0e2bf68369b092cb6e3.jpg",
-        "https://images.unsplash.com/photo-1530092285049-1c42085fd395?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D",
     ];
     @override
     Widget build(BuildContext context){
@@ -28,17 +27,21 @@ class _FlowerAppState extends State{
         return MaterialApp(
 
             debugShowCheckedModeBanner: false,
-            title: "Player App",
+            title: "Flower App",
             home: Scaffold(
               appBar:AppBar(
-                     title: const Text("Player App"),
+                     title: const Text("Image App"),
                      centerTitle: true,
                      backgroundColor: Colors.blue,   
               ),
-              body: Center(
-                     child:Image.network(flowerList[index],fit:BoxFit.cover,height: 350,width: 270,),
-                     
+              body:   Center(
+                child:SizedBox(
+                  height: 370,
+                  width: 300,
+                      child:Image.network(flowerList[index],fit:BoxFit.cover,),
+                  ),
               ),
+              
               floatingActionButton: FloatingActionButton(
                   onPressed:(){
                         if(index < flowerList.length-1){
