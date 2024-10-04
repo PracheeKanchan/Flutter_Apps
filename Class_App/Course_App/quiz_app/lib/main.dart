@@ -98,6 +98,8 @@ Color feedbackCol(String feedbackMessage){
         return Colors.red;
       }
 }
+
+
   @override
   Widget build(BuildContext context){
 
@@ -307,7 +309,7 @@ Color feedbackCol(String feedbackMessage){
                                       questionPage=false;
                                 }
                                 selectedAnswerIndex=-1;
-                                feedbackMessage='';
+                                //feedbackMessage='';
                                 
                     }else{
                           errorMessage="Please select an option";
@@ -370,15 +372,12 @@ Color feedbackCol(String feedbackMessage){
                       width: 160,
                        child: ElevatedButton(
                           onPressed:(){
-
-                              
                                      currentQuestionIndex = 0;
                                      selectedAnswerIndex = -1; 
                                      questionPage=true;
                                      scoreCount = 0;
                                      errorMessage ="";
                                      setState(() {});
-                            
                           } ,
                           child: const Text("Reset",
                             style: TextStyle(
