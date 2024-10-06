@@ -1,30 +1,31 @@
+
 import 'package:flutter/material.dart';
-void main(){
-    runApp(const MyApp());
+
+
+void main() {
+  runApp(const MyApp());
 }
 class MyApp extends StatelessWidget{
+  const MyApp({super.key});
 
-    const MyApp({super.key});
-
-    @override
-    Widget build(BuildContext context){
-
-        return const MaterialApp(
+  @override
+  Widget build(BuildContext context){
+      return const MaterialApp(
           debugShowCheckedModeBanner: false,
           home: QuizApp(),
-        );
-    }
+      );
+  }
 }
-class QuizApp extends StatefulWidget{
+class QuizApp extends StatefulWidget {
+  const QuizApp({super.key});
 
-    const QuizApp({super.key});
-    @override
-    State createState()=>_QuizAppState();
+  @override
+  State<QuizApp> createState() => _QuizAppState();
 }
-class _QuizAppState extends State{
 
+class _QuizAppState extends State<QuizApp> {
 
-  List<Map> allQuestions = [
+   List<Map> allQuestions = [
 
     {
         "question":"What is the capital of India?",
@@ -54,7 +55,7 @@ class _QuizAppState extends State{
     
   ];
 
-  int currentQuestionIndex = 0;
+  int currentQuestionIndex = -1;
   int selectedAnswerIndex = -1; 
   bool questionPage=true;
   int scoreCount = 0;
@@ -99,15 +100,66 @@ Color feedbackCol(String feedbackMessage){
       }
 }
 
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    
+      if(currentQuestionIndex==-1){
+            return Scaffold(
+                  body: Container(
+                                height: MediaQuery.of(context).size.height,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: const BoxDecoration(
+                                    gradient: RadialGradient(
+                                      colors: [Colors.purple,Colors.purpleAccent],
+                                      center:Alignment.topLeft,
+                                      radius: 0.6,
+                                      tileMode: TileMode.mirror,
+                                      stops: <double>[
+                                        0.1, // Position of the first color
+                                        1.0, // Position of the second color
+                                      ],
+                                      ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height:200,),
+                                    const Text(
+                                        "Quizzard",
+                                        style: TextStyle(
+                                            fontSize: 60,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.white
+                                        ),
+                                    ),
+                                    Image.network("https://pbs.twimg.com/media/GUcobuzWgAA4w8K.jpg:large"),
+                                    SizedBox(
+                                      width: 130,
+                                      height: 50,
+                                      child: ElevatedButton(
+                                              onPressed: (){
+                                                  currentQuestionIndex=0;
+                                                  setState(() {});
+                                              },
+                                              style: const ButtonStyle(
+                                                    side: WidgetStatePropertyAll(
+                                                          BorderSide(color: Colors.white,width: 1),
+                                                    ),
+                                                    backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+                                              ),
+                                              child:const Text(
+                                                "Start Quiz",
+                                                style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w800),
+                                              ),
+                                        ),
+                                    ),
+                                    
+                                  ],
+                                ),
+                            ),
+          );
 
-    return isQuestionScreen();
-  }
-    Scaffold isQuestionScreen(){
-
-        if(questionPage==true){
+      }
+      else if(currentQuestionIndex > -1 && currentQuestionIndex< allQuestions.length ){
 
             return Scaffold(
             appBar: AppBar(
@@ -299,22 +351,19 @@ Color feedbackCol(String feedbackMessage){
                   
                     if(selectedAnswerIndex == allQuestions[currentQuestionIndex]["correctAnswer"]){
                         scoreCount++;
-                        //correctAns=true;
+                        
                     }
-                    if(selectedAnswerIndex !=-1){
+                    if(selectedAnswerIndex !=-1 && currentQuestionIndex < allQuestions.length){
                           
-                                if(currentQuestionIndex < (allQuestions.length-1)){
-                                       currentQuestionIndex++;
-                                }else{
-                                      questionPage=false;
-                                }
-                                selectedAnswerIndex=-1;
-                                //feedbackMessage='';
+                        currentQuestionIndex++;
+                        selectedAnswerIndex=-1;
+                        setState(() {});
                                 
                     }else{
                           errorMessage="Please select an option";
+                          setState(() {});
                     }
-                    setState(() {});
+                    
               },
               backgroundColor: Colors.purple,
               child: const Icon(
@@ -322,11 +371,12 @@ Color feedbackCol(String feedbackMessage){
                 color: Colors.black,
               ),
             ),
-      );
+          );
 
-    }else{
+      }
+      else{
 
-      return Scaffold(
+          return Scaffold(
         
           appBar: AppBar(
               title: const Text(
@@ -372,7 +422,7 @@ Color feedbackCol(String feedbackMessage){
                       width: 160,
                        child: ElevatedButton(
                           onPressed:(){
-                                     currentQuestionIndex = 0;
+                                     currentQuestionIndex = -1;
                                      selectedAnswerIndex = -1; 
                                      questionPage=true;
                                      scoreCount = 0;
@@ -394,6 +444,19 @@ Color feedbackCol(String feedbackMessage){
           ),
       );
 
-    }
+      }
+        
+        
+      
+    
   }
 }
+
+
+
+
+
+//https://png.pngtree.com/thumb_back/fh260/background/20230527/pngtree-treasure-chest-on-a-purple-background-3d-illustration-image_2651107.jpg
+          //https://img.freepik.com/premium-photo/bitcoin-treasure-box-medieval-ancient-wooden-cartoon-chests-game-old-pirate-treasure_968381-255.jpg
+          //https://img.freepik.com/premium-photo/treasure-box-illustration-medieval-ancient-wooden-cartoon-chests-game-old-pirate-treasures_968381-170.jpg
+          //"https://pbs.twimg.com/media/GUcobuzWgAA4w8K.jpg:large"
