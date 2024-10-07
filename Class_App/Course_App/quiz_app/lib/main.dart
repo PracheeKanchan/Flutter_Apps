@@ -104,9 +104,9 @@ Color feedbackCol(String feedbackMessage){
   Widget build(BuildContext context) {
     
       if(currentQuestionIndex==-1){
+          //First UI Screen
             return Scaffold(
                   body: Container(
-                                height: MediaQuery.of(context).size.height,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: const BoxDecoration(
                                     gradient: RadialGradient(
@@ -122,19 +122,28 @@ Color feedbackCol(String feedbackMessage){
                                 ),
                                 child: Column(
                                   children: [
-                                    const SizedBox(height:200,),
+                                    const SizedBox(height:100,),
                                     const Text(
                                         "Quizzard",
                                         style: TextStyle(
                                             fontSize: 60,
                                             fontWeight: FontWeight.w900,
-                                            color: Colors.white
+                                            color: Colors.white,
                                         ),
                                     ),
-                                    Image.network("https://pbs.twimg.com/media/GUcobuzWgAA4w8K.jpg:large"),
+                                    const Padding(padding:  EdgeInsets.only(top: 50)),
                                     SizedBox(
-                                      width: 130,
-                                      height: 50,
+                                            child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                              child: Image.network(
+                                                "https://pbs.twimg.com/media/GUcobuzWgAA4w8K.jpg:large",
+                                              ),
+                                            ),
+                                    ),
+                                    const Padding(padding: EdgeInsets.only(top: 90)),
+                                    SizedBox(
+                                      width: 150,
+                                      height: 60,
                                       child: ElevatedButton(
                                               onPressed: (){
                                                   currentQuestionIndex=0;
@@ -148,7 +157,7 @@ Color feedbackCol(String feedbackMessage){
                                               ),
                                               child:const Text(
                                                 "Start Quiz",
-                                                style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w800),
+                                                style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w800),
                                               ),
                                         ),
                                     ),
@@ -161,6 +170,7 @@ Color feedbackCol(String feedbackMessage){
       }
       else if(currentQuestionIndex > -1 && currentQuestionIndex< allQuestions.length ){
 
+            //Quiz Screen
             return Scaffold(
             appBar: AppBar(
                 title: const Text(
@@ -193,10 +203,10 @@ Color feedbackCol(String feedbackMessage){
                     ],
                   ),
                   const SizedBox(height: 50,),
-                  SizedBox(
+                  Container(
                     height: 70,
-                    width: 320,
-
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.only(left: 40),
                     /// Question
                     
                     child: Text(
@@ -208,7 +218,7 @@ Color feedbackCol(String feedbackMessage){
                         ),
                     ),
                   ),
-                  const SizedBox(height: 50,),
+                  const SizedBox(height: 40,),
 
                   /////Option 1
                   
@@ -218,6 +228,7 @@ Color feedbackCol(String feedbackMessage){
                     child: ElevatedButton(
                       style: ButtonStyle(
                              backgroundColor:checkAnswer(0),
+                             side:const WidgetStatePropertyAll(BorderSide(color: Colors.purple)),
                       ),
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
@@ -247,6 +258,7 @@ Color feedbackCol(String feedbackMessage){
                       
                       style: ButtonStyle(
                              backgroundColor:checkAnswer(1),
+                             side:const WidgetStatePropertyAll(BorderSide(color: Colors.purple)),
                       ),
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
@@ -276,6 +288,7 @@ Color feedbackCol(String feedbackMessage){
                       
                       style: ButtonStyle(
                              backgroundColor:checkAnswer(2),
+                             side:const WidgetStatePropertyAll(BorderSide(color: Colors.purple)),
                       ),
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
@@ -305,6 +318,7 @@ Color feedbackCol(String feedbackMessage){
                       
                       style: ButtonStyle(
                              backgroundColor:checkAnswer(3),
+                             side:const WidgetStatePropertyAll(BorderSide(color: Colors.purple)),
                       ),
                       onPressed:() {
                             if(selectedAnswerIndex == -1){
@@ -333,7 +347,7 @@ Color feedbackCol(String feedbackMessage){
                         ),
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 20),
                    SizedBox(
                     child: Text(errorMessage,
                           style: const TextStyle(
@@ -348,11 +362,12 @@ Color feedbackCol(String feedbackMessage){
             ),
             floatingActionButton: FloatingActionButton(
               onPressed:(){
-                  
+                    //count of correct answer
                     if(selectedAnswerIndex == allQuestions[currentQuestionIndex]["correctAnswer"]){
                         scoreCount++;
                         
                     }
+                    //Increment question index and reclear options
                     if(selectedAnswerIndex !=-1 && currentQuestionIndex < allQuestions.length){
                           
                         currentQuestionIndex++;
@@ -360,6 +375,7 @@ Color feedbackCol(String feedbackMessage){
                         setState(() {});
                                 
                     }else{
+                          //None option selected then this message display
                           errorMessage="Please select an option";
                           setState(() {});
                     }
@@ -375,7 +391,7 @@ Color feedbackCol(String feedbackMessage){
 
       }
       else{
-
+          //Result Screen
           return Scaffold(
         
           appBar: AppBar(
@@ -421,7 +437,14 @@ Color feedbackCol(String feedbackMessage){
                       height: 50,
                       width: 160,
                        child: ElevatedButton(
+                          style: const ButtonStyle(
+                                side:WidgetStatePropertyAll(BorderSide(color: Colors.purple)),
+                                backgroundColor: WidgetStatePropertyAll(Colors.purple),
+                          
+                          ),
                           onPressed:(){
+                            
+                                     //Reset all flags to start quiz again
                                      currentQuestionIndex = -1;
                                      selectedAnswerIndex = -1; 
                                      questionPage=true;
@@ -432,10 +455,11 @@ Color feedbackCol(String feedbackMessage){
                           child: const Text("Reset",
                             style: TextStyle(
                                 fontSize: 22,
-                                color: Colors.black,
+                                color: Colors.white,
                                 
                             ),
                           ),
+                          
                         ),
                      ),
                      
@@ -454,9 +478,3 @@ Color feedbackCol(String feedbackMessage){
 
 
 
-
-
-//https://png.pngtree.com/thumb_back/fh260/background/20230527/pngtree-treasure-chest-on-a-purple-background-3d-illustration-image_2651107.jpg
-          //https://img.freepik.com/premium-photo/bitcoin-treasure-box-medieval-ancient-wooden-cartoon-chests-game-old-pirate-treasure_968381-255.jpg
-          //https://img.freepik.com/premium-photo/treasure-box-illustration-medieval-ancient-wooden-cartoon-chests-game-old-pirate-treasures_968381-170.jpg
-          //"https://pbs.twimg.com/media/GUcobuzWgAA4w8K.jpg:large"
