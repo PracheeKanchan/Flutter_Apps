@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439651540137",
+    "project_id": "mysamitidarpanproject",
+    "storage_bucket": "mysamitidarpanproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439651540137:android:21fea914aa189b6d769db8",
+        "android_client_info": {
+          "package_name": "com.example.sumiti_darpan_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyButfWf7XGCcR09U5qpOSM0e6vvX8S2bhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

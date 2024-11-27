@@ -86,7 +86,7 @@ class NetflixApp extends StatelessWidget{
                         
                          Expanded(
                            child: ListView.builder(
-                                  itemCount: 3,
+                                  itemCount: 5,
                                   itemBuilder:(context, index) {
                                     return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,10 +96,10 @@ class NetflixApp extends StatelessWidget{
                                                   fontSize: 21,
                                                   fontWeight: FontWeight.w600,
                                                   color: Colors.white,
-                                              ),
+                                              ), 
                                         ),
-                                                   const SizedBox(height: 10,),
-                                                   SingleChildScrollView(
+                                  const SizedBox(height: 10,),
+                                  SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: [

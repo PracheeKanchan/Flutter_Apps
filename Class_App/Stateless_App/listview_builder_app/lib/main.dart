@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-            title: const Text("ListView Builder Demo",
+            title: const Text("ListView Builder",
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w700
