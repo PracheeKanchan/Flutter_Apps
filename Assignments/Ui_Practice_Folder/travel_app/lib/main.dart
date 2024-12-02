@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'travel_ui.dart';
+import 'package:travel_app/cardclick_scrreen.dart';
+import 'package:travel_app/travel_ui.dart';
 
 void main(){
   runApp(const MyApp());

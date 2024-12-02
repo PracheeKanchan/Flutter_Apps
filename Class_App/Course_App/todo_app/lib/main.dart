@@ -190,7 +190,7 @@ class _ToDoAppUIState extends State<ToDoAppUI> {
                                                 borderSide: BorderSide(color:Color.fromRGBO(2,167,177,1),width: 0.5 )
                                             ),
                                             
-                                                  suffixIcon: const Icon(
+                                                  suffixIcon: Icon(
                                                       Icons.calendar_month_outlined,
                                                   ),
                                                  ),
