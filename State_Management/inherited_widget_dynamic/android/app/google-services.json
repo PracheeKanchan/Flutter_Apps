@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "484174752395",
+    "project_id": "inheritedwidget-709f2",
+    "storage_bucket": "inheritedwidget-709f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484174752395:android:6a1c45fb6b3cb615d3428e",
+        "android_client_info": {
+          "package_name": "com.example.inherited_widget_dynamic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9sxsoe4CWKNyFvZNY2-X6w5ISus2sw94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

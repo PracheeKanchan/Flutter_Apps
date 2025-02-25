@@ -10,7 +10,7 @@ class SessionData {
       // SET DATA
       sharedPreferences.setBool("loginSession", loginData);
       // GET DATA
-      //getSessionData();
+      getSessionData();
     }
 
       static Future<void> getSessionData() async {

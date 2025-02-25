@@ -1,7 +1,4 @@
-import 'package:expense_manager_app/login_screen.dart';
-import 'package:expense_manager_app/sign_up_screen.dart';
-import 'package:expense_manager_app/splash_screen.dart';
-import 'package:expense_manager_app/transaction_screen.dart';
+import 'package:expense_manager_app/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:SplashScreen(),
+      home:CategoriesScreen(),
     );
   }
 }

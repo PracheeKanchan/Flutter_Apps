@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.16
+  readmore: ^3.0.0
+  pie_chart: ^5.4.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +25,6 @@ flutter:
     - assets/expense_splash_image.svg
     - assets/down_arrow.svg
     - assets/Medicine.svg
+    - assets/food.svg
+    - assets/fuel.svg
+    - assets/photo.svg
