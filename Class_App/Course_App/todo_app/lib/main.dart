@@ -42,6 +42,7 @@ class _ToDoAppUIState extends State<ToDoAppUI> {
     ];
 
      List<ToDoModel> toDoCardList=[];
+     int selectedValue=1;
 
     void submit(bool isEdit,[ToDoModel? todoObj]){
 
@@ -161,6 +162,17 @@ class _ToDoAppUIState extends State<ToDoAppUI> {
                                         ),
                                       ),
 
+                                      for(int i=1;i<=2;i++)
+                                        Radio(
+                                          value: i, 
+                                          groupValue: selectedValue, 
+                                          onChanged: (int? value){
+                                              setState(() {
+                                                selectedValue=value!;
+                                              });
+                                          },
+                                          activeColor: Colors.green,
+                                        ),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text("Date",
@@ -194,8 +206,8 @@ class _ToDoAppUIState extends State<ToDoAppUI> {
                                                   onTap: () async {
                                                       DateTime? pickedDate = await showDatePicker(
                                                       context: context,
-                                                      firstDate: DateTime(2024),
-                                                      lastDate: DateTime(2025),
+                                                      firstDate: DateTime(2025),
+                                                      lastDate: DateTime(2026,6,6),
                                                   );
                                                   String formattedDate = DateFormat.yMMMd().format(pickedDate!);
 
